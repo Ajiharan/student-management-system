@@ -1,0 +1,70 @@
+<nav
+  class="
+    navbar navbar-expand-lg navbar-light
+    default-layout
+    bg-light
+    d-flex
+    flex-row
+    fixed-top
+    p-0
+  "
+>
+  <div class="navbar-brand-logo d-flex flex-center flex-row">
+    <a class="navbar-brand brand-logo" routerLink="/"
+      ><img src="assets/images/logo.svg" alt="logo"
+    /></a>
+    <a class="navbar-brand brand-logo-mini" routerLink="/"
+      ><img src="assets/images/logo-mini.svg" alt="logo"
+    /></a>
+  </div>
+  <div class="nav-items">
+    <button><i class="fas fa-bars"></i></button>
+  </div>
+  <div class="search-field d-none d-block">
+    <form class="d-flex flex-center">
+      <div class="label-icon">
+        <i class="fas fa-search"></i>
+      </div>
+      <input type="text" placeholder="search name" />
+    </form>
+  </div>
+  <ul class="navbar-nav navbar-nav-right">
+    <li class="nav-item nav-profile dropdown" ngbDropdown>
+      <a
+        class="d-flex flex-center align-items-center"
+        id="dropdownProfile"
+        ngbDropdownToggle
+        style="cursor: pointer"
+      >
+        <div class="drop-profile">
+          <img src="assets/images/face2.jpg" alt="profile-user" />
+          <span class="profile-user-online"></span>
+        </div>
+        <div class="profile-text">Zhung Jio</div>
+      </a>
+      <div ngbDropdownMenu aria-labelledby="dropdownProfile">
+        <button ngbDropdownItem>Action - 1</button>
+        <button ngbDropdownItem>Another Action</button>
+        <button ngbDropdownItem>Something else is here</button>
+      </div>
+    </li>
+    <li class="nav-item dropdown" ngbDropdown>
+      <a
+        class="d-flex flex-center align-items-center"
+        id="messageDropdown"
+        ngbDropdownToggle
+        style="cursor: pointer"
+      >
+        <div class="drop-profile">
+          <i class="fas fa-inbox"></i>
+          <span class="message-online-status"></span>
+        </div>
+      </a>
+      <div ngbDropdownMenu aria-labelledby="messageDropdown">
+        <button ngbDropdownItem>message1</button>
+        <button ngbDropdownItem>message2</button>
+        <button ngbDropdownItem>message3</button>
+      </div>
+    </li>
+  </ul>
+</nav>
