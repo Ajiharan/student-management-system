@@ -5,57 +5,71 @@
     bg-light
     d-flex
     flex-row
+    align-items-center
     fixed-top
+    bg-white
     p-0
   "
 >
-  <div class="navbar-brand-logo d-flex flex-center flex-row">
-    <a class="navbar-brand brand-logo" routerLink="/"
-      ><img src="assets/images/logo.svg" alt="logo"
-    /></a>
-    <a class="navbar-brand brand-logo-mini" routerLink="/"
-      ><img src="assets/images/logo-mini.svg" alt="logo"
-    /></a>
+  <div class="nav-left-items d-flex align-items-center">
+    <div class="navbar-brand-logo d-flex align-items-center flex-row">
+      <a class="navbar-brand brand-logo" routerLink="/"
+        ><img src="assets/images/logo.svg" alt="logo"
+      /></a>
+      <a class="navbar-brand brand-logo-mini" routerLink="/"
+        ><img src="assets/images/logo-mini.svg" alt="logo"
+      /></a>
+    </div>
+    <div class="nav-items">
+      <button><i class="fas fa-bars"></i></button>
+    </div>
+    <div class="search-field d-block">
+      <form class="d-flex flex-center">
+        <div class="label-icon">
+          <i class="fas fa-search"></i>
+        </div>
+        <input type="text" placeholder="search name" />
+      </form>
+    </div>
   </div>
-  <div class="nav-items">
-    <button><i class="fas fa-bars"></i></button>
-  </div>
-  <div class="search-field d-none d-block">
-    <form class="d-flex flex-center">
-      <div class="label-icon">
-        <i class="fas fa-search"></i>
-      </div>
-      <input type="text" placeholder="search name" />
-    </form>
-  </div>
-  <ul class="navbar-nav navbar-nav-right">
+
+  <ul class="navbar-nav navbar-nav-right d-flex align-items-center flex-row">
     <li class="nav-item nav-profile dropdown" ngbDropdown>
       <a
-        class="d-flex flex-center align-items-center"
+        class="d-flex flex-center align-items-center dropdown-title"
         id="dropdownProfile"
         ngbDropdownToggle
         style="cursor: pointer"
       >
-        <div class="drop-profile">
-          <img src="assets/images/face2.jpg" alt="profile-user" />
+        <div class="drop-profile icon-setting">
+          <img
+            src="assets/images/face2.jpg"
+            alt="profile-user"
+            class="user-profile-img"
+          />
           <span class="profile-user-online"></span>
         </div>
         <div class="profile-text">Zhung Jio</div>
       </a>
       <div ngbDropdownMenu aria-labelledby="dropdownProfile">
-        <button ngbDropdownItem>Action - 1</button>
-        <button ngbDropdownItem>Another Action</button>
-        <button ngbDropdownItem>Something else is here</button>
+        <div ngbDropdownItem>
+          <div class="message-icon-type">
+            <i class="fas fa-table"></i>
+          </div>
+          <div class="message-content">
+            <p>Data usage</p>
+          </div>
+        </div>
       </div>
     </li>
     <li class="nav-item dropdown" ngbDropdown>
       <a
-        class="d-flex flex-center align-items-center"
+        class="d-flex flex-center align-items-center dropdown-title"
         id="messageDropdown"
         ngbDropdownToggle
         style="cursor: pointer"
       >
-        <div class="drop-profile">
+        <div class="drop-profile icon-setting">
           <i class="fas fa-inbox"></i>
           <span class="message-online-status"></span>
         </div>
@@ -65,6 +79,42 @@
         <button ngbDropdownItem>message2</button>
         <button ngbDropdownItem>message3</button>
       </div>
+    </li>
+    <li class="nav-item dropdown" ngbDropdown>
+      <a
+        class="d-flex flex-center align-items-center dropdown-title"
+        id="notificationDropdown"
+        ngbDropdownToggle
+        style="cursor: pointer"
+      >
+        <div class="drop-profile icon-setting">
+          <i class="fas fa-bell"></i>
+          <span class="notification-online-status"></span>
+        </div>
+      </a>
+      <div ngbDropdownMenu aria-labelledby="notificationDropdown">
+        <button ngbDropdownItem>notification1</button>
+        <button ngbDropdownItem>notification2</button>
+        <button ngbDropdownItem>notification3</button>
+      </div>
+    </li>
+    <li class="nav-item">
+      <a class="alert-notification">
+        <div class="icon-setting">
+          <i class="fas fa-bomb"></i>
+
+          <span class="alert-notification-status"></span>
+        </div>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="broadcast-notification">
+        <div class="icon-setting">
+          <i class="fas fa-broadcast-tower"></i>
+
+          <span class="broadcast-notification-status"></span>
+        </div>
+      </a>
     </li>
   </ul>
 </nav>
