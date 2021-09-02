@@ -1,5 +1,6 @@
 @import "../../../styles.scss";
 #sidebar {
+  transition: 0.65s cubic-bezier(0.19, 1, 0.22, 1) 0s;
   position: fixed;
   margin-top: $navbar-height;
   height: 100vh;
@@ -7,10 +8,14 @@
   background-color: white;
   margin-left: -1rem;
   // padding: 1rem;
-  border-right: 1px solid lightgray;
-  .nav-profile {
-    padding: 0.3rem;
-    margin: 1rem 0;
+  // border-right: 1px solid lightgray;
+  .side-nav-ul {
+    margin-top: 3rem;
+  }
+  .nav-sidebar-profile {
+    overflow: hidden;
+    padding: 0.4rem 0.6rem;
+
     transition: 0.45s cubic-bezier(0.19, 1, 0.22, 1) 0s;
 
     &:hover {
@@ -21,12 +26,21 @@
   .list-items {
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-between;
     i {
+      width: 2rem;
+      height: 2rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-image: linear-gradient(60deg, #29323c 0%, #485563 100%);
+      border-radius: 100%;
       color: lightgray;
+
+      font-size: 1rem;
     }
     span {
-      flex: 1 1;
+      width: 10rem;
       color: #333333;
     }
   }

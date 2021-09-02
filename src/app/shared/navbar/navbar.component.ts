@@ -10,6 +10,9 @@ export class NavbarComponent implements OnInit, OnDestroy {
   offlineEvent: Observable<Event> | undefined;
   subscription: Subscription = new Subscription();
   isOnline: boolean = true;
+  public iconOnlyToggled = false;
+  public sidebarToggled = false;
+
   constructor() {}
 
   ngOnInit(): void {
@@ -28,6 +31,16 @@ export class NavbarComponent implements OnInit, OnDestroy {
         this.isOnline = false;
       })
     );
+  }
+  toggleSidebar() {
+    const body = document.querySelector('body');
+    body?.classList.toggle('sidebar-only-icon');
+
+    if (body?.classList.contains('sidebar-only-icon')) {
+      this.iconOnlyToggled = true;
+    } else {
+      this.iconOnlyToggled = false;
+    }
   }
   ngOnDestroy(): void {
     this.subscription.unsubscribe();

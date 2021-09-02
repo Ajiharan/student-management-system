@@ -89,13 +89,15 @@
 }
 .default-layout {
   height: $navbar-height;
-  border-bottom: 1px solid lightgray;
+  // border-bottom: 1px solid lightgray;
 }
 
 .nav-left-items {
   flex: 1 1;
 }
 .navbar-brand-logo {
+  transition: 0.65s cubic-bezier(0.19, 1, 0.22, 1) 0s;
+  min-width: 14rem;
   padding: 1rem 2rem;
   .brand-logo {
     img {
