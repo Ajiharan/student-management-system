@@ -11,8 +11,9 @@ import { CommonModule } from '@angular/common';
 import { SidebarComponent } from './shared/sidebar/sidebar.component';
 import { SpinnerComponent } from './shared/spinner/spinner.component';
 import { FooterComponent } from './shared/footer/footer.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 @NgModule({
-  declarations: [AppComponent, NavbarComponent, SidebarComponent, SpinnerComponent, FooterComponent],
+  declarations: [AppComponent, NavbarComponent, SidebarComponent, SpinnerComponent, FooterComponent, DashboardComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

@@ -1,0 +1,33 @@
+@import "../../../styles.scss";
+#sidebar {
+  position: fixed;
+  margin-top: $navbar-height;
+  height: 100vh;
+  width: $sidebar-width-lg;
+  background-color: white;
+  margin-left: -1rem;
+  // padding: 1rem;
+  border-right: 1px solid lightgray;
+  .nav-profile {
+    padding: 0.3rem;
+    margin: 1rem 0;
+    transition: 0.45s cubic-bezier(0.19, 1, 0.22, 1) 0s;
+
+    &:hover {
+      background-color: #f2f2f2;
+      opacity: 0.75;
+    }
+  }
+  .list-items {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    i {
+      color: lightgray;
+    }
+    span {
+      flex: 1 1;
+      color: #333333;
+    }
+  }
+}
