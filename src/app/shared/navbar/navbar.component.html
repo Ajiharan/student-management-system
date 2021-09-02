@@ -70,7 +70,7 @@
         style="cursor: pointer"
       >
         <div class="drop-profile icon-setting">
-          <i class="fas fa-inbox"></i>
+          <i class="far fa-envelope"></i>
           <span class="message-online-status"></span>
         </div>
       </a>
@@ -88,7 +88,7 @@
         style="cursor: pointer"
       >
         <div class="drop-profile icon-setting">
-          <i class="fas fa-bell"></i>
+          <i class="far fa-bell"></i>
           <span class="notification-online-status"></span>
         </div>
       </a>
@@ -101,7 +101,7 @@
     <li class="nav-item">
       <a class="alert-notification">
         <div class="icon-setting">
-          <i class="fas fa-bomb"></i>
+          <i class="fas fa-radiation-alt"></i>
 
           <span class="alert-notification-status"></span>
         </div>
@@ -110,9 +110,15 @@
     <li class="nav-item">
       <a class="broadcast-notification">
         <div class="icon-setting">
-          <i class="fas fa-broadcast-tower"></i>
+          <i
+            [ngClass]="{ 'online-icon': isOnline, 'offline-icon': !isOnline }"
+            class="fas fa-broadcast-tower"
+          ></i>
 
-          <span class="broadcast-notification-status"></span>
+          <span
+            [ngClass]="{ online: isOnline, offline: !isOnline }"
+            class="broadcast-notification-status"
+          ></span>
         </div>
       </a>
     </li>

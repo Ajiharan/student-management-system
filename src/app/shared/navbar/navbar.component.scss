@@ -1,11 +1,20 @@
-$image-logo-size: 8rem;
+$image-logo-size: 7rem;
 $image-logo-mini-size: 2rem;
 $icon-color: gray;
-$icon-font-size: 1.4rem;
+$icon-font-size: 1.1rem;
 $margin-right: 1rem;
 $margin-left: 1.5rem;
 $profile-text-margin-left: 1rem;
 $dropdown-box-position-left: -50px;
+
+@mixin status-viewer($color: coral) {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  background: $color;
+  margin: auto;
+  border-radius: 100%;
+}
 
 @mixin staus-shower($color: red) {
   @keyframes breathe {
@@ -33,7 +42,6 @@ $dropdown-box-position-left: -50px;
   position: absolute;
   width: 5px;
   height: 5px;
-  background: red;
   margin: auto;
   border-radius: 100%;
   background-color: $color;
@@ -184,16 +192,33 @@ $dropdown-box-position-left: -50px;
     position: relative;
   }
   .message-online-status {
-    @include staus-shower(green);
+    @include status-viewer(green);
     opacity: 0.7;
   }
   .notification-online-status {
-    @include staus-shower(coral);
+    @include status-viewer(purple);
     opacity: 0.7;
   }
   .alert-notification-status {
     @include staus-shower(red);
     opacity: 0.7;
+  }
+  .broadcast-notification-status {
+    &.online {
+      @include staus-shower(green);
+      opacity: 0.7;
+    }
+    &.offline {
+      @include staus-shower(red);
+      opacity: 0.7;
+    }
+  }
+  .online-icon {
+    color: green;
+  }
+
+  .offline-icon {
+    color: coral;
   }
 }
 
@@ -204,7 +229,7 @@ $dropdown-box-position-left: -50px;
 }
 @media (max-width: 960px) {
   .default-layout {
-    position: relative;
+    position: fixed;
   }
   .dropdown {
     position: static !important;
