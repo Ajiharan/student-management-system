@@ -29,6 +29,8 @@ $dropdown-box-position-left: -50px;
       width: 19rem;
 
       &:hover {
+        // background-color: lightgray;
+        opacity: 1;
         border-radius: 0 5px 5px 0;
         -webkit-box-shadow: 4px 0px 7px 0px rgba(182, 185, 189, 0.25);
         box-shadow: 4px 0px 7px 0px rgba(182, 185, 189, 0.25);
