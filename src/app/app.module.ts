@@ -8,8 +8,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 // import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CommonModule } from '@angular/common';
+import { SidebarComponent } from './shared/sidebar/sidebar.component';
+import { SpinnerComponent } from './shared/spinner/spinner.component';
+import { FooterComponent } from './shared/footer/footer.component';
 @NgModule({
-  declarations: [AppComponent, NavbarComponent],
+  declarations: [AppComponent, NavbarComponent, SidebarComponent, SpinnerComponent, FooterComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
