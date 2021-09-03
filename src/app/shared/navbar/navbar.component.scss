@@ -228,7 +228,7 @@
     position: fixed;
   }
   .dropdown {
-    // position: static !important;
+    position: inherit !important;
   }
   .dropdown-menu {
     top: 70px;
