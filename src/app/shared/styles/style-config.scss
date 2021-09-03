@@ -27,6 +27,13 @@ $dropdown-box-position-left: -50px;
     .nav-sidebar-profile {
       overflow: visible;
       width: 19rem;
+      .list-items {
+        i {
+          color: darken(white, 1%);
+          background-image: linear-gradient(60deg, #29323c 0%, #485563 100%);
+          border-radius: 100%;
+        }
+      }
 
       &:hover {
         // background-color: lightgray;
