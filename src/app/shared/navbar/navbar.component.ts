@@ -35,18 +35,20 @@ export class NavbarComponent implements OnInit, OnDestroy {
   toggleSidebar() {
     const body = document.querySelector('body');
     body?.classList.toggle('sidebar-only-icon');
-
+    const form_field: any = document.querySelector('.seach-form-field');
     if (body?.classList.contains('sidebar-only-icon')) {
       this.iconOnlyToggled = true;
+      form_field.style.border = 'none';
     } else {
       this.iconOnlyToggled = false;
+      form_field.style.border = '1px solid lightgray';
     }
   }
   @HostListener('window:resize', ['$event'])
   onResize(event: any) {
     const btn = document.querySelector('.btn-bar');
     const body = document.querySelector('body');
-
+    // const form_field: any = document.querySelector('.seach-form-field');
     if (event.target?.innerWidth >= 860) {
       if (btn?.classList.contains('btn-toggle-bar')) {
         btn?.classList.remove('btn-toggle-bar');

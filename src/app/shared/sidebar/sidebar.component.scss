@@ -25,6 +25,19 @@
       // opacity: 0.75;
     }
   }
+  .seach-form-field {
+    padding: 0.1rem 0.1rem;
+    border: 1px solid lightgray;
+    border-radius: 6px;
+    .search-field {
+      width: 10rem !important;
+      border: none;
+      background-color: transparent;
+      &:focus {
+        outline: none;
+      }
+    }
+  }
   .list-items {
     display: flex;
     align-items: center;
@@ -47,5 +60,14 @@
   }
 }
 
+@media (min-width: 980px) {
+  .nav-side-search-bar {
+    display: none !important;
+  }
+}
+
 @media (max-width: 860px) {
+  .seach-form-field {
+    border: none !important;
+  }
 }

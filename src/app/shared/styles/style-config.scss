@@ -1,5 +1,5 @@
 $navbar-height: 4rem;
-$sidebar-width-lg: 15rem;
+$sidebar-width-lg: 15.5rem;
 $sidebar-width-icon: 5rem;
 $sidebar-width-mini: 11rem;
 
@@ -53,7 +53,7 @@ $dropdown-box-position-left: -50px;
         }
       }
       @media (max-width: 860px) {
-        width: 14rem;
+        width: 16rem;
         padding: 0.2rem 0.4em;
         .sidebar-span-item {
           padding: 0 1.5rem;
