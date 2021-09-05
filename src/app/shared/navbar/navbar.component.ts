@@ -42,6 +42,31 @@ export class NavbarComponent implements OnInit, OnDestroy {
       this.iconOnlyToggled = false;
     }
   }
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any) {
+    const btn = document.querySelector('.btn-bar');
+    const body = document.querySelector('body');
+
+    if (event.target?.innerWidth >= 860) {
+      if (btn?.classList.contains('btn-toggle-bar')) {
+        btn?.classList.remove('btn-toggle-bar');
+      }
+      if (body?.classList.contains('sidebar-only-icon')) {
+        if (!this.iconOnlyToggled) {
+          body?.classList.remove('sidebar-only-icon');
+        }
+      }
+    } else {
+      if (!btn?.classList.contains('btn-toggle-bar')) {
+        btn?.classList.add('btn-toggle-bar');
+      }
+      if (!body?.classList.contains('sidebar-only-icon')) {
+        if (!this.iconOnlyToggled) {
+          body?.classList.add('sidebar-only-icon');
+        }
+      }
+    }
+  }
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }

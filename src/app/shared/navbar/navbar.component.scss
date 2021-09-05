@@ -224,6 +224,9 @@
   }
 }
 @media (max-width: 980px) {
+  .user-profile-img {
+    width: 30px !important;
+  }
   .default-layout {
     position: fixed;
   }
@@ -235,5 +238,38 @@
     width: 98%;
     left: 10px !important;
     right: 20px;
+  }
+  .search-field {
+    display: none !important;
+  }
+  .btn-toggle-bar {
+    display: none !important;
+  }
+}
+
+@media (max-width: 580px) {
+  .user-profile-img {
+    width: 25px !important;
+  }
+  .dropdown {
+    .profile-text {
+      font-size: 0.8rem;
+    }
+  }
+  .icon-setting {
+    i {
+      font-size: 0.8rem;
+    }
+  }
+}
+@media (max-width: 520px) {
+  #dropdownProfile {
+    display: none !important;
+  }
+  .navbar-nav-right {
+    min-width: auto;
+  }
+  .nav-left-items {
+    width: 2rem;
   }
 }
