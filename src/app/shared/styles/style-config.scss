@@ -13,6 +13,13 @@ $profile-text-margin-left: 1rem;
 $dropdown-box-position-left: -50px;
 
 :host-context(.sidebar-only-icon) {
+  .main-panel {
+    width: calc(100vw - #{$sidebar-width-icon});
+    height: 100vh;
+    margin-left: $sidebar-width-icon;
+    margin-top: $navbar-height;
+  }
+
   .navbar-brand-logo {
     transition: 0.65s cubic-bezier(0.19, 1, 0.22, 1) 0s;
     min-width: 5rem;
