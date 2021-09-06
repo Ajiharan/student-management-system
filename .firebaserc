@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "student-management-demo-15faa": {
+      "hosting": {
+        "stu-management-sys": [
+          "student-management-demo-15faa"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "student-management-demo-15faa"
+  }
+}
