@@ -12,8 +12,18 @@ import { SidebarComponent } from './shared/sidebar/sidebar.component';
 import { SpinnerComponent } from './shared/spinner/spinner.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { ChartsModule } from 'ng2-charts';
+import { ChartsComponent } from './charts/charts.component';
 @NgModule({
-  declarations: [AppComponent, NavbarComponent, SidebarComponent, SpinnerComponent, FooterComponent, DashboardComponent],
+  declarations: [
+    AppComponent,
+    NavbarComponent,
+    SidebarComponent,
+    SpinnerComponent,
+    FooterComponent,
+    DashboardComponent,
+    ChartsComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -21,7 +31,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
-
+    ChartsModule,
     CommonModule,
   ],
   providers: [],

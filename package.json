@@ -27,11 +27,13 @@
     "@fortawesome/free-solid-svg-icons": "^5.15.3",
     "@ng-bootstrap/ng-bootstrap": "^10.0.0",
     "bootstrap": "^4.6.0",
+    "chart.js": "^2.9.4",
+    "firebase": "^9.0.0",
+    "ng2-charts": "^2.4.3",
+    "rxfire": "^6.0.0",
     "rxjs": "~6.6.0",
     "tslib": "^2.3.0",
-    "zone.js": "~0.11.4",
-    "firebase": "^9.0.0",
-    "rxfire": "^6.0.0"
+    "zone.js": "~0.11.4"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~12.2.3",

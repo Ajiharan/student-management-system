@@ -9,10 +9,14 @@
 
 .top-dashboard-items {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
+  flex-wrap: wrap;
   .box {
+    flex: 1 1;
+    margin: 1rem 0.5rem;
+    min-width: 280px;
     height: 25vh;
-    width: 20vw;
+    // width: 100%;
     .box-body {
       display: flex;
       justify-content: space-between;

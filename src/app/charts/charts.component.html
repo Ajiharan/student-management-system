@@ -1,0 +1,27 @@
+<div class="chart-container">
+  <div class="bar-chart chart-model">
+    <canvas
+      baseChart
+      [datasets]="barChartData"
+      [labels]="barChartLabels"
+      [options]="barChartOptions"
+      [plugins]="barChartPlugins"
+      [legend]="barChartLegend"
+      [chartType]="barChartType"
+    >
+    </canvas>
+  </div>
+  <div class="line-chart chart-model">
+    <canvas
+      baseChart
+      [datasets]="lineChartData"
+      [labels]="lineChartLabels"
+      [options]="lineChartOptions"
+      [colors]="lineChartColors"
+      [legend]="lineChartLegend"
+      [chartType]="'line'"
+      [plugins]="lineChartPlugins"
+    >
+    </canvas>
+  </div>
+</div>
