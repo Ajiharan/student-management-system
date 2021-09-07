@@ -3,6 +3,7 @@
   background-color: #f2f2f2;
   width: calc(100vw - #{$sidebar-width-lg});
   min-height: 100vh;
+  height: 100% !important;
   margin-left: $sidebar-width-lg;
   margin-top: $navbar-height;
 }

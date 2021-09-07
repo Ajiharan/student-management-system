@@ -14,6 +14,9 @@ import { FooterComponent } from './shared/footer/footer.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ChartsModule } from 'ng2-charts';
 import { ChartsComponent } from './charts/charts.component';
+import { TablesComponent } from './tables/tables.component';
+import { TaskCalenderComponent } from './task-calender/task-calender.component';
+import { TaskTodoComponent } from './task-todo/task-todo.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,6 +26,9 @@ import { ChartsComponent } from './charts/charts.component';
     FooterComponent,
     DashboardComponent,
     ChartsComponent,
+    TablesComponent,
+    TaskCalenderComponent,
+    TaskTodoComponent,
   ],
   imports: [
     BrowserModule,
