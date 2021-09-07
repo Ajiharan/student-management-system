@@ -1,1 +1,7 @@
-<p>task-calender works!</p>
+<div class="task-calender">
+  <ngb-datepicker
+    #dp
+    [(ngModel)]="model"
+    (navigate)="date = $event.next"
+  ></ngb-datepicker>
+</div>
