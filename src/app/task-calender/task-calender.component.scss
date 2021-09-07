@@ -1,5 +1,5 @@
 .task-calender {
-  padding: 1rem;
+  margin: 0.5rem;
   // background-color: white;
   // border-radius: 10px;
 
@@ -31,4 +31,8 @@
   ::ng-deep ngb-datepicker-month {
     width: 100%;
   }
+}
+
+:host {
+  flex: 1 1;
 }
