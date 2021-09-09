@@ -6,6 +6,7 @@
   height: 100% !important;
   margin-left: $sidebar-width-lg;
   margin-top: $navbar-height;
+  z-index: -1;
 }
 
 .content-wrapper {

@@ -17,6 +17,7 @@ import { ChartsComponent } from './charts/charts.component';
 import { TablesComponent } from './tables/tables.component';
 import { TaskCalenderComponent } from './task-calender/task-calender.component';
 import { TaskTodoComponent } from './task-todo/task-todo.component';
+import { SectionAnimationDirective } from './shared/directives/section-animation.directive';
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,6 +30,7 @@ import { TaskTodoComponent } from './task-todo/task-todo.component';
     TablesComponent,
     TaskCalenderComponent,
     TaskTodoComponent,
+    SectionAnimationDirective,
   ],
   imports: [
     BrowserModule,
