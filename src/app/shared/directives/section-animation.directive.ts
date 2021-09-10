@@ -25,19 +25,9 @@ export class SectionAnimationDirective implements OnInit, OnDestroy {
   initAnimate() {
     this.player = this.animationBuilder
       .build([
-        style({
-          transform: 'translateY(-1%)',
-          opacity: 0,
-          position: 'static',
-          height: '100%',
-        }),
-        animate(
-          '0.5s ease-in-out',
-          style({
-            transform: 'translateY(0%)',
-            opacity: 1,
-          })
-        ),
+        style({ opacity: 0, transform: 'translateY(15px)' }),
+        animate(500, style({ opacity: 1, transform: 'translateY(0)' })),
+        style({ transform: 'none' }),
       ])
       .create(this.el.nativeElement);
   }
