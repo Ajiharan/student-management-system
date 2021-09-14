@@ -24,7 +24,6 @@ export class todoEffect {
         // console.log('action', action);
         return this.todoService.addTodo(action.payload).pipe(
           map((response: TodoState) => {
-            console.log('response', response);
             return addTodoSuccess({
               payload: {
                 _id: response._id,
@@ -47,7 +46,7 @@ export class todoEffect {
       exhaustMap((action) => {
         return this.todoService.getTodos().pipe(
           map((response: TodoState[]) => {
-            console.log('response', response);
+            // console.log('response', response);
             return getTodoSuccess({
               payload: response,
             });

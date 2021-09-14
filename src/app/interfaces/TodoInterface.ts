@@ -7,7 +7,7 @@ export interface ITodoState {
 }
 
 export interface ITodoGetState {
-  data: TodoState[] | null;
+  data: TodoState[];
   loading: boolean;
   error: any;
 }

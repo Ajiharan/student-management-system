@@ -8,6 +8,7 @@ import {
   getTodoFailure,
   getTodoRequest,
   getTodoSuccess,
+  setDefaultAddTodo,
 } from './TodoAction';
 
 const initialState: ITodoState = {
@@ -32,6 +33,9 @@ const todo_reducer = createReducer(
   }),
   on(addTodoFailure, (state: ITodoState, action) => {
     return { ...state, data: null, loading: false, error: action.error };
+  }),
+  on(setDefaultAddTodo, (state: ITodoState, action) => {
+    return { ...state, data: null, error: null, loading: true };
   })
 );
 

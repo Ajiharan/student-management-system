@@ -1,34 +1,68 @@
-import { addTodoRequest, getTodoRequest } from './../state/TodoAction';
-import { Component, OnInit } from '@angular/core';
+import { ITodoGetState, ITodoState } from './../interfaces/TodoInterface';
+import { todoGetSelector, todoSelector } from './../state/TodoSelector';
+import { Subscription } from 'rxjs';
 import {
-  FormControl,
-  FormGroup,
-  FormGroupDirective,
-  Validators,
-} from '@angular/forms';
+  addTodoRequest,
+  getTodoRequest,
+  setDefaultAddTodo,
+} from './../state/TodoAction';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
+import { distinctUntilChanged } from 'rxjs/operators';
+import { TodoState } from '../models/TodoState';
 
 @Component({
   selector: 'app-task-todo',
   templateUrl: './task-todo.component.html',
   styleUrls: ['./task-todo.component.scss'],
 })
-export class TaskTodoComponent implements OnInit {
+export class TaskTodoComponent implements OnInit, OnDestroy {
   TodoFormGroup: FormGroup = new FormGroup({
     Todotitle: new FormControl('', Validators.required),
   });
+  todos: TodoState[] = [];
+  private subscription: Subscription = new Subscription();
   constructor(private store: Store<any>) {}
 
   ngOnInit(): void {
     this.store.dispatch(getTodoRequest());
+
+    this.subscription.add(
+      this.store
+        .select(todoGetSelector)
+        .pipe(distinctUntilChanged())
+        .subscribe((res: ITodoGetState) => {
+          this.todos = [...res.data];
+
+          this.todos.sort((b, a) => {
+            return (
+              new Date(a.updatedAt).getTime() - new Date(b.updatedAt).getTime()
+            );
+          });
+        })
+    );
+  }
+
+  getTodos() {
+    this.subscription.add(
+      this.store
+        .select(todoSelector)
+        .pipe(distinctUntilChanged())
+        .subscribe((res: ITodoState) => {
+          if (res.data) {
+            this.store.dispatch(setDefaultAddTodo());
+            this.store.dispatch(getTodoRequest());
+          }
+        })
+    );
   }
 
   submitForm() {
     const { Todotitle } = this.TodoFormGroup.value;
     this.store.dispatch(addTodoRequest({ payload: { title: Todotitle } }));
-    setTimeout(() => {
-      this.TodoFormGroup.reset();
-    }, 0);
+    this.TodoFormGroup.reset();
+    this.getTodos();
   }
 
   checkTitle(): boolean {
@@ -39,5 +73,8 @@ export class TaskTodoComponent implements OnInit {
     if (inputControl.touched && inputControl.errors) return true;
 
     return false;
+  }
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 }

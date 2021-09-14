@@ -17,6 +17,8 @@ export const addTodoFailure = createAction(
   props<{ error: any }>()
 );
 
+export const setDefaultAddTodo = createAction(TodoEnum.SET_TODO_DEFAULT);
+
 export const getTodoRequest = createAction(TodoEnum.GET_TODO_REQUEST);
 
 export const getTodoSuccess = createAction(
