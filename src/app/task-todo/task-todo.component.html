@@ -8,8 +8,21 @@
       <li><input type="checkbox" />check student paymentssss</li>
     </ul>
     <div class="admin-task-input">
-      <input type="text" />
-      <button>Add Task</button>
+      <form (ngSubmit)="submitForm()" [formGroup]="TodoFormGroup">
+        <input type="text" formControlName="Todotitle" />
+        <div class="error-label">
+          <p *ngIf="checkTitle()" class="lead text-danger">
+            *title is required
+          </p>
+        </div>
+        <button
+          [disabled]="!TodoFormGroup.valid"
+          type="submit"
+          class="btn btn-danger btn-sm mt-4 btn-sub"
+        >
+          Add Task
+        </button>
+      </form>
     </div>
   </div>
 </div>
