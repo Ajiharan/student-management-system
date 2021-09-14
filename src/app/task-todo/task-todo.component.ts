@@ -1,3 +1,4 @@
+import { addTodoRequest, getTodoRequest } from './../state/TodoAction';
 import { Component, OnInit } from '@angular/core';
 import {
   FormControl,
@@ -5,6 +6,7 @@ import {
   FormGroupDirective,
   Validators,
 } from '@angular/forms';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-task-todo',
@@ -15,13 +17,18 @@ export class TaskTodoComponent implements OnInit {
   TodoFormGroup: FormGroup = new FormGroup({
     Todotitle: new FormControl('', Validators.required),
   });
-  constructor() {}
+  constructor(private store: Store<any>) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.store.dispatch(getTodoRequest());
+  }
 
   submitForm() {
-    console.log(this.TodoFormGroup.value);
-    this.TodoFormGroup.reset();
+    const { Todotitle } = this.TodoFormGroup.value;
+    this.store.dispatch(addTodoRequest({ payload: { title: Todotitle } }));
+    setTimeout(() => {
+      this.TodoFormGroup.reset();
+    }, 0);
   }
 
   checkTitle(): boolean {

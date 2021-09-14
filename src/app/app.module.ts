@@ -24,6 +24,8 @@ import { environment } from '../environments/environment';
 import { EffectsModule } from '@ngrx/effects';
 
 import { HttpClientModule } from '@angular/common/http';
+import { todoGetReducer, todoReducer } from './state/TodoReducer';
+import { todoEffect } from './state/TodoEffect';
 @NgModule({
   declarations: [
     AppComponent,
@@ -48,12 +50,15 @@ import { HttpClientModule } from '@angular/common/http';
     ReactiveFormsModule,
     ChartsModule,
     CommonModule,
-    StoreModule.forRoot({}, {}),
+    StoreModule.forRoot({
+      todoDetails: todoReducer,
+      todoGetDetails: todoGetReducer,
+    }),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
       logOnly: environment.production,
     }),
-    EffectsModule.forRoot([]),
+    EffectsModule.forRoot([todoEffect]),
   ],
   providers: [ThemeService],
   bootstrap: [AppComponent],
