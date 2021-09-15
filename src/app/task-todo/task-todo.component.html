@@ -3,7 +3,11 @@
     <h6>Todo List</h6>
     <div class="todo-scroll">
       <ul *ngFor="let todo of todos">
-        <li [ngClass]="updateTodo(todo.isFinished, todo._id)">
+        <li
+          [ngClass]="updateTodo(todo.isFinished, todo._id)"
+          class="todo-lists"
+        >
+          <p class="date-sm">{{ todo.createdAt | date: "medium" }}</p>
           <input
             type="checkbox"
             [checked]="todo.isFinished"
@@ -14,7 +18,7 @@
     </div>
     <div class="admin-task-input">
       <form (ngSubmit)="submitForm()" [formGroup]="TodoFormGroup">
-        <input type="text" formControlName="Todotitle" />
+        <input type="text" class="form-control" formControlName="Todotitle" />
         <div class="error-label">
           <p *ngIf="checkTitle()" class="lead text-danger">
             *title is required

@@ -24,6 +24,7 @@ export class TaskTodoComponent implements OnInit, OnDestroy {
   });
   todos: TodoState[] = [];
   private subscription: Subscription = new Subscription();
+  private wordWrapCount: number = 76;
   constructor(private store: Store<any>) {}
 
   ngOnInit(): void {
@@ -35,7 +36,19 @@ export class TaskTodoComponent implements OnInit, OnDestroy {
         .pipe(distinctUntilChanged())
         .subscribe((res: ITodoGetState) => {
           this.todos = [...res.data];
+          this.todos = this.todos.map((todo: TodoState) => {
+            const count = Math.floor(todo.title.length / this.wordWrapCount);
+            if (count > 0) {
+              for (let i = 0; i < count; i++) {
+                todo.title =
+                  todo.title.substring(0, this.wordWrapCount * (i + 1)) +
+                  '\n' +
+                  todo.title.substring(this.wordWrapCount * (i + 1));
+              }
+            }
 
+            return todo;
+          });
           this.todos.sort((b, a) => {
             return (
               new Date(a.updatedAt).getTime() - new Date(b.updatedAt).getTime()
