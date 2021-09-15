@@ -5,6 +5,7 @@ import {
   addTodoRequest,
   getTodoRequest,
   setDefaultAddTodo,
+  updateTodoRequest,
 } from './../state/TodoAction';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
@@ -42,6 +43,36 @@ export class TaskTodoComponent implements OnInit, OnDestroy {
           });
         })
     );
+  }
+
+  checkHandler(event: any, id: string) {
+    const todo: TodoState | undefined = this.todos?.find((r) => r._id === id);
+    if (todo) {
+      if (event?.target?.checked) {
+        todo.isFinished = true;
+        this.store.dispatch(
+          updateTodoRequest({
+            payload: { isFinished: todo.isFinished },
+            _id: todo._id,
+          })
+        );
+      } else {
+        todo.isFinished = false;
+        this.store.dispatch(
+          updateTodoRequest({
+            payload: { isFinished: todo.isFinished },
+            _id: todo._id,
+          })
+        );
+      }
+    }
+  }
+
+  updateTodo(isFinished: boolean, id: string): string {
+    // console.log(isFinished);
+
+    if (isFinished) return 'todo-list-item';
+    return '';
   }
 
   getTodos() {

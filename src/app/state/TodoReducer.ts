@@ -1,5 +1,9 @@
 import { Action, createReducer, on } from '@ngrx/store';
-import { ITodoState, ITodoGetState } from '../interfaces/TodoInterface';
+import {
+  ITodoState,
+  ITodoGetState,
+  ITodoUpdateState,
+} from '../interfaces/TodoInterface';
 
 import {
   addTodoFailure,
@@ -9,6 +13,9 @@ import {
   getTodoRequest,
   getTodoSuccess,
   setDefaultAddTodo,
+  updateTodoFailure,
+  updateTodoRequest,
+  updateTodoSuccess,
 } from './TodoAction';
 
 const initialState: ITodoState = {
@@ -25,16 +32,16 @@ const initialTodoGetState: ITodoGetState = {
 
 const todo_reducer = createReducer(
   initialState,
-  on(addTodoRequest, (state: ITodoState, action) => {
+  on(addTodoRequest, (state: any, action) => {
     return { ...state, data: null, error: null, loading: true };
   }),
   on(addTodoSuccess, (state: ITodoState, action) => {
     return { ...state, data: action.payload, error: null, loading: false };
   }),
-  on(addTodoFailure, (state: ITodoState, action) => {
+  on(addTodoFailure, (state: any, action) => {
     return { ...state, data: null, loading: false, error: action.error };
   }),
-  on(setDefaultAddTodo, (state: ITodoState, action) => {
+  on(setDefaultAddTodo, (state: any, action) => {
     return { ...state, data: null, error: null, loading: true };
   })
 );
@@ -52,10 +59,27 @@ const todo_get_reducer = createReducer(
   })
 );
 
+const todo_update_reducer = createReducer(
+  initialState,
+  on(updateTodoRequest, (state: any, action) => {
+    return { ...state, data: null, error: null, loading: true };
+  }),
+  on(updateTodoSuccess, (state: ITodoState, action) => {
+    return { ...state, data: action.payload, error: null, loading: false };
+  }),
+  on(updateTodoFailure, (state: any, action) => {
+    return { ...state, data: null, loading: false, error: action.error };
+  })
+);
+
 export function todoReducer(state: ITodoState, action: Action): any {
   return todo_reducer(state, action);
 }
 
 export function todoGetReducer(state: ITodoGetState, action: Action): any {
   return todo_get_reducer(state, action);
+}
+
+export function todoUpdateReducer(state: ITodoState, action: Action): any {
+  return todo_update_reducer(state, action);
 }

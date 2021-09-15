@@ -13,6 +13,9 @@ import {
   getTodoFailure,
   getTodoRequest,
   getTodoSuccess,
+  updateTodoFailure,
+  updateTodoRequest,
+  updateTodoSuccess,
 } from './TodoAction';
 
 @Injectable()
@@ -35,6 +38,29 @@ export class todoEffect {
             });
           }),
           catchError((err) => of(addTodoFailure({ error: err })))
+        );
+      })
+    )
+  );
+
+  updateTodoEffect$ = createEffect(() =>
+    this.action$.pipe(
+      ofType(updateTodoRequest),
+      mergeMap((action) => {
+        // console.log('action', action);
+        return this.todoService.updateTodo(action._id, action.payload).pipe(
+          map((response: TodoState) => {
+            return updateTodoSuccess({
+              payload: {
+                _id: response._id,
+                createdAt: response.createdAt,
+                title: response.title,
+                updatedAt: response.updatedAt,
+                isFinished: response.isFinished,
+              },
+            });
+          }),
+          catchError((err) => of(updateTodoFailure({ error: err })))
         );
       })
     )

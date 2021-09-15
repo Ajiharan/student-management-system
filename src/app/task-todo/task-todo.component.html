@@ -1,9 +1,17 @@
 <div class="admin-tasks">
   <div class="admin-task-panel">
     <h6>Todo List</h6>
-    <ul *ngFor="let todo of todos">
-      <li><input type="checkbox" />{{ todo.title }}</li>
-    </ul>
+    <div class="todo-scroll">
+      <ul *ngFor="let todo of todos">
+        <li [ngClass]="updateTodo(todo.isFinished, todo._id)">
+          <input
+            type="checkbox"
+            [checked]="todo.isFinished"
+            (change)="checkHandler($event, todo._id)"
+          />{{ todo.title }}
+        </li>
+      </ul>
+    </div>
     <div class="admin-task-input">
       <form (ngSubmit)="submitForm()" [formGroup]="TodoFormGroup">
         <input type="text" formControlName="Todotitle" />

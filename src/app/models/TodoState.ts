@@ -7,3 +7,6 @@ export interface TodoState {
 }
 
 export type todoAddState = Pick<TodoState, 'title'>;
+
+export type todoUpdateState = Pick<TodoState, 'isFinished'>;
+//sd

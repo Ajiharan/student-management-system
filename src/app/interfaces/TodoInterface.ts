@@ -1,4 +1,4 @@
-import { TodoState } from '../models/TodoState';
+import { TodoState, todoUpdateState } from '../models/TodoState';
 
 export interface ITodoState {
   data: TodoState | null;
@@ -11,3 +11,11 @@ export interface ITodoGetState {
   loading: boolean;
   error: any;
 }
+
+export interface ITodoUpdateState {
+  data: TodoState | null;
+  loading: boolean;
+  error: any;
+}
+
+//sd

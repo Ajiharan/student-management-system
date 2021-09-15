@@ -1,6 +1,6 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { todoAddState, TodoState } from '../models/TodoState';
+import { todoAddState, TodoState, todoUpdateState } from '../models/TodoState';
 
 @Injectable({
   providedIn: 'root',
@@ -15,5 +15,10 @@ export class TodoService {
 
   getTodos() {
     return this.http.get<TodoState[]>(`${this.baseUrl}/getTodos`);
+  }
+
+  updateTodo(id: string, todo: todoUpdateState) {
+    console.log(id);
+    return this.http.patch<TodoState>(`${this.baseUrl}/${id}`, todo);
   }
 }
