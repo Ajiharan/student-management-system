@@ -1,6 +1,7 @@
 import { todoUpdateState } from './../models/TodoState';
 import { ITodoGetState, ITodoState } from './../interfaces/TodoInterface';
 import {
+  getTodoOnDateSelector,
   todoGetSelector,
   todoSelector,
   todoUpdateSelector,
@@ -9,10 +10,11 @@ import { Subscription } from 'rxjs';
 import {
   addTodoRequest,
   getTodoRequest,
+  getTodoRequestOnDate,
   setDefaultAddTodo,
   updateTodoRequest,
 } from './../state/TodoAction';
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { distinctUntilChanged } from 'rxjs/operators';
@@ -30,7 +32,7 @@ export class TaskTodoComponent implements OnInit, OnDestroy {
   });
   todos: TodoState[] = [];
   private subscription: Subscription = new Subscription();
-  private wordWrapCount: number = 76;
+  private wordWrapCount: number = 45;
 
   constructor(private store: Store<any>, private dataService: DataService) {}
 
@@ -39,9 +41,31 @@ export class TaskTodoComponent implements OnInit, OnDestroy {
     this.getAllTodos();
     this.getTodos();
     this.checkUpdateSuccess();
-    this.dataService.currentSelectDate.subscribe((ndate) => {
-      console.log(ndate);
+    this.getTodosOnDate();
+    this.dataService.currentSelectDate.subscribe((passDate) => {
+      if (passDate) {
+        const resetDate = new Date(passDate);
+
+        console.log(resetDate.toISOString());
+
+        this.store.dispatch(
+          getTodoRequestOnDate({ date: resetDate.toISOString() })
+        );
+      }
     });
+  }
+
+  getTodosOnDate() {
+    this.subscription.add(
+      this.store
+        .select(getTodoOnDateSelector)
+        .pipe(distinctUntilChanged())
+        .subscribe((res: ITodoGetState) => {
+          this.todos = [...res.data];
+
+          this.setTodos();
+        })
+    );
   }
 
   checkUpdateSuccess() {
@@ -57,6 +81,25 @@ export class TaskTodoComponent implements OnInit, OnDestroy {
     );
   }
 
+  setTodos(): void {
+    this.todos = this.todos.map((todo: TodoState) => {
+      const count = Math.floor(todo.title.length / this.wordWrapCount);
+      if (count > 0) {
+        for (let i = 0; i < count; i++) {
+          todo.title =
+            todo.title.substring(0, this.wordWrapCount * (i + 1)) +
+            '\n' +
+            todo.title.substring(this.wordWrapCount * (i + 1));
+        }
+      }
+
+      return todo;
+    });
+    this.todos.sort((b, a) => {
+      return new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime();
+    });
+  }
+
   getAllTodos() {
     this.subscription.add(
       this.store
@@ -64,24 +107,8 @@ export class TaskTodoComponent implements OnInit, OnDestroy {
         .pipe(distinctUntilChanged())
         .subscribe((res: ITodoGetState) => {
           this.todos = [...res.data];
-          this.todos = this.todos.map((todo: TodoState) => {
-            const count = Math.floor(todo.title.length / this.wordWrapCount);
-            if (count > 0) {
-              for (let i = 0; i < count; i++) {
-                todo.title =
-                  todo.title.substring(0, this.wordWrapCount * (i + 1)) +
-                  '\n' +
-                  todo.title.substring(this.wordWrapCount * (i + 1));
-              }
-            }
 
-            return todo;
-          });
-          this.todos.sort((b, a) => {
-            return (
-              new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()
-            );
-          });
+          this.setTodos();
         })
     );
   }
@@ -145,6 +172,7 @@ export class TaskTodoComponent implements OnInit, OnDestroy {
 
     return false;
   }
+
   ngOnDestroy(): void {
     console.log('triggered');
     this.subscription.unsubscribe();

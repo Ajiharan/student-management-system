@@ -49,7 +49,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
     const btn = document.querySelector('.btn-bar');
     const body = document.querySelector('body');
     // const form_field: any = document.querySelector('.seach-form-field');
-    if (event.target?.innerWidth >= 860) {
+    if (event.target?.innerWidth >= 960) {
       if (btn?.classList.contains('btn-toggle-bar')) {
         btn?.classList.remove('btn-toggle-bar');
       }

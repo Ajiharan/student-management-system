@@ -5,8 +5,10 @@ export interface AppState {
   todoDetails: ITodoState;
   todoGetDetails: ITodoGetState;
   todoUpdateDetails: ITodoState;
+  todoGetDetailsOnDate: ITodoGetState;
 }
 
+export const getTodosByDate = (state: AppState) => state.todoGetDetailsOnDate;
 export const addTodo = (state: AppState) => state.todoDetails;
 
 export const updateTodo = (state: AppState) => state.todoUpdateDetails;
@@ -17,6 +19,10 @@ export const todoSelector = createSelector(
   (state: ITodoState) => state
 );
 
+export const getTodoOnDateSelector = createSelector(
+  getTodosByDate,
+  (state: ITodoGetState) => state
+);
 export const todoGetSelector = createSelector(
   getTodos,
   (state: ITodoGetState) => state

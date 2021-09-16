@@ -20,7 +20,7 @@ export class TaskCalenderComponent implements OnInit {
 
   getCurrentDate(cdate: any) {
     const now = new Date();
-    now.setFullYear(cdate.year, cdate.month, cdate.day);
+    now.setFullYear(cdate.year, cdate.month - 1, cdate.day);
     console.log('date : ', now, cdate);
     this.dataService.setCurrentDate(now);
   }

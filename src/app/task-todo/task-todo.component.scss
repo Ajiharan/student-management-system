@@ -1,5 +1,5 @@
 .admin-tasks {
-  min-width: 60vw;
+  width: 55vw;
   height: 100%;
   margin: 0.5rem;
   .admin-task-panel {
@@ -24,7 +24,8 @@
     }
   }
 
-  @media (max-width: 960px) {
+  @media (max-width: 1320px) {
+    width: 100%;
   }
 }
 

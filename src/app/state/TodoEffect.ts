@@ -16,6 +16,9 @@ import {
   updateTodoFailure,
   updateTodoRequest,
   updateTodoSuccess,
+  getTodoFailureOnDate,
+  getTodoRequestOnDate,
+  getTodoSuccessOnDate,
 } from './TodoAction';
 
 @Injectable()
@@ -78,6 +81,23 @@ export class todoEffect {
             });
           }),
           catchError((err) => of(getTodoFailure({ error: err })))
+        );
+      })
+    )
+  );
+
+  getTodosOnDateEffect$ = createEffect(() =>
+    this.action$.pipe(
+      ofType(getTodoRequestOnDate),
+      exhaustMap((action) => {
+        return this.todoService.getTodosOnDate(action.date).pipe(
+          map((response: TodoState[]) => {
+            // console.log('response', response);
+            return getTodoSuccessOnDate({
+              payload: response,
+            });
+          }),
+          catchError((err) => of(getTodoFailureOnDate({ error: err })))
         );
       })
     )

@@ -21,4 +21,8 @@ export class TodoService {
     console.log(id);
     return this.http.patch<TodoState>(`${this.baseUrl}/${id}`, todo);
   }
+
+  getTodosOnDate(date: string) {
+    return this.http.get<TodoState[]>(`${this.baseUrl}/getTodoOnDate/${date}`);
+  }
 }

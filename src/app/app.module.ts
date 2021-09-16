@@ -26,6 +26,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { HttpClientModule } from '@angular/common/http';
 import {
   todoGetReducer,
+  todoGetReducerOnDate,
   todoReducer,
   todoUpdateReducer,
 } from './state/TodoReducer';
@@ -59,6 +60,7 @@ import { todoEffect } from './state/TodoEffect';
         todoDetails: todoReducer,
         todoGetDetails: todoGetReducer,
         todoUpdateDetails: todoUpdateReducer,
+        todoGetDetailsOnDate: todoGetReducerOnDate,
       },
       {
         runtimeChecks: {

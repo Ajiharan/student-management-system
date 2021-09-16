@@ -16,6 +16,9 @@ import {
   updateTodoFailure,
   updateTodoRequest,
   updateTodoSuccess,
+  getTodoFailureOnDate,
+  getTodoRequestOnDate,
+  getTodoSuccessOnDate,
 } from './TodoAction';
 
 const initialState: ITodoState = {
@@ -71,6 +74,26 @@ const todo_update_reducer = createReducer(
     return { ...state, data: null, loading: false, error: action.error };
   })
 );
+
+const todo_get_reducer_ondate = createReducer(
+  initialTodoGetState,
+  on(getTodoRequestOnDate, (state: ITodoGetState, action) => {
+    return { ...state, data: [], error: null, loading: true };
+  }),
+  on(getTodoSuccessOnDate, (state: ITodoGetState, action) => {
+    return { ...state, data: action.payload, error: null, loading: false };
+  }),
+  on(getTodoFailureOnDate, (state: ITodoGetState, action) => {
+    return { ...state, data: [], loading: false, error: action.error };
+  })
+);
+
+export function todoGetReducerOnDate(
+  state: ITodoGetState,
+  action: Action
+): any {
+  return todo_get_reducer_ondate(state, action);
+}
 
 export function todoReducer(state: ITodoState, action: Action): any {
   return todo_reducer(state, action);

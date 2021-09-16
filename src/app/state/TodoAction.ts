@@ -43,3 +43,16 @@ export const updateTodoFailure = createAction(
   TodoEnum.UPDATE_TODO_FAILURE,
   props<{ error: any }>()
 );
+
+export const getTodoRequestOnDate = createAction(
+  TodoEnum.GET_TODOS_ONDATE_REQUEST,
+  props<{ date: string }>()
+);
+export const getTodoSuccessOnDate = createAction(
+  TodoEnum.GET_TODOS_ONDATE_SUCCESS,
+  props<{ payload: TodoState[] }>()
+);
+export const getTodoFailureOnDate = createAction(
+  TodoEnum.GET_TODOS_ONDATE_FAILURE,
+  props<{ error: any }>()
+);
