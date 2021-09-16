@@ -3,5 +3,6 @@
     #dp
     [(ngModel)]="model"
     (navigate)="date = $event.next"
+    (dateSelect)="getCurrentDate($event)"
   ></ngb-datepicker>
 </div>

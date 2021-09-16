@@ -17,6 +17,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { distinctUntilChanged } from 'rxjs/operators';
 import { TodoState } from '../models/TodoState';
+import { DataService } from '../services/data.service';
 
 @Component({
   selector: 'app-task-todo',
@@ -31,13 +32,16 @@ export class TaskTodoComponent implements OnInit, OnDestroy {
   private subscription: Subscription = new Subscription();
   private wordWrapCount: number = 76;
 
-  constructor(private store: Store<any>) {}
+  constructor(private store: Store<any>, private dataService: DataService) {}
 
   ngOnInit(): void {
     this.store.dispatch(getTodoRequest());
     this.getAllTodos();
     this.getTodos();
     this.checkUpdateSuccess();
+    this.dataService.currentSelectDate.subscribe((ndate) => {
+      console.log(ndate);
+    });
   }
 
   checkUpdateSuccess() {
