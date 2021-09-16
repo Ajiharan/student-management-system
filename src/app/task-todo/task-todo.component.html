@@ -18,7 +18,11 @@
     </div>
     <div class="admin-task-input">
       <form (ngSubmit)="submitForm()" [formGroup]="TodoFormGroup">
-        <input type="text" class="form-control" formControlName="Todotitle" />
+        <textarea
+          formControlName="Todotitle"
+          class="form-control"
+          rows="4"
+        ></textarea>
         <div class="error-label">
           <p *ngIf="checkTitle()" class="lead text-danger">
             *title is required

@@ -32,8 +32,6 @@ $dropdown-box-position-left: -50px;
   }
   #sidebar {
     .nav-sidebar-profile {
-      overflow: visible;
-      width: 19rem;
       .list-items {
         i {
           color: darken(white, 1%);
@@ -43,6 +41,8 @@ $dropdown-box-position-left: -50px;
       }
 
       &:hover {
+        overflow: visible;
+        width: 19rem;
         // background-color: lightgray;
         opacity: 1;
         border-radius: 0 5px 5px 0;
@@ -60,7 +60,6 @@ $dropdown-box-position-left: -50px;
         }
       }
       @media (max-width: 860px) {
-        width: 16rem;
         padding: 0.2rem 0.4em;
         .sidebar-span-item {
           padding: 0 1.5rem;
@@ -73,6 +72,9 @@ $dropdown-box-position-left: -50px;
             width: 1.75rem;
             height: 1.75rem;
           }
+        }
+        &:hover {
+          width: 16rem;
         }
       }
     }

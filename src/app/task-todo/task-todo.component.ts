@@ -1,5 +1,10 @@
+import { todoUpdateState } from './../models/TodoState';
 import { ITodoGetState, ITodoState } from './../interfaces/TodoInterface';
-import { todoGetSelector, todoSelector } from './../state/TodoSelector';
+import {
+  todoGetSelector,
+  todoSelector,
+  todoUpdateSelector,
+} from './../state/TodoSelector';
 import { Subscription } from 'rxjs';
 import {
   addTodoRequest,
@@ -25,11 +30,30 @@ export class TaskTodoComponent implements OnInit, OnDestroy {
   todos: TodoState[] = [];
   private subscription: Subscription = new Subscription();
   private wordWrapCount: number = 76;
+
   constructor(private store: Store<any>) {}
 
   ngOnInit(): void {
     this.store.dispatch(getTodoRequest());
+    this.getAllTodos();
+    this.getTodos();
+    this.checkUpdateSuccess();
+  }
 
+  checkUpdateSuccess() {
+    this.subscription.add(
+      this.store
+        .select(todoUpdateSelector)
+        .pipe(distinctUntilChanged())
+        .subscribe(({ error }) => {
+          if (error) {
+            this.store.dispatch(getTodoRequest());
+          }
+        })
+    );
+  }
+
+  getAllTodos() {
     this.subscription.add(
       this.store
         .select(todoGetSelector)
@@ -51,7 +75,7 @@ export class TaskTodoComponent implements OnInit, OnDestroy {
           });
           this.todos.sort((b, a) => {
             return (
-              new Date(a.updatedAt).getTime() - new Date(b.updatedAt).getTime()
+              new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()
             );
           });
         })
@@ -106,7 +130,6 @@ export class TaskTodoComponent implements OnInit, OnDestroy {
     const { Todotitle } = this.TodoFormGroup.value;
     this.store.dispatch(addTodoRequest({ payload: { title: Todotitle } }));
     this.TodoFormGroup.reset();
-    this.getTodos();
   }
 
   checkTitle(): boolean {
@@ -119,6 +142,7 @@ export class TaskTodoComponent implements OnInit, OnDestroy {
     return false;
   }
   ngOnDestroy(): void {
+    console.log('triggered');
     this.subscription.unsubscribe();
   }
 }
